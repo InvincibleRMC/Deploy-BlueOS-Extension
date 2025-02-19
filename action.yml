@@ -43,10 +43,12 @@ inputs:
   skip-checkout:
     description: 'Skip the checkout step (e.g. if files are already present).'
     default: 'false'
+matrix:
+  version: [10, 12]
 runs:
   using: 'composite'
   steps:
-    - name: Checkout
+    - name: Checkout ${{ matrix.version}}
       if: ${{ inputs.skip-checkout != 'true' }}
       uses: actions/checkout@v3
       with:
